@@ -1,5 +1,5 @@
 # wordle
-Integrantes:Alejo Ferrari Cioffi, Bernardo Olmedo, Facundo Vazquez, Matias Vento
+Integrantes: Alejo Ferrari Cioffi, Bernardo Olmedo, Facundo Vazquez, Matias Vento
 
 Nuestro objetivo principal como grupo es lograr la implementacion de una version funcional y didactica del juego wordle para consola, a partir de ahi poder incorporar distintas tematicas, niveles y versiones.
 
@@ -11,4 +11,4 @@ Plan de entrega:
 
 80%: Agregar mas profundidad a la jugabilidad con mas personalizacion y guardado de datos(tematicas seleccionadas, estadisticas de historial de juego)
 
-100%:LLevar al juego a una version final con elementos avanzados de logica, jugabilidad y competencia(dificultades, mas tematicas, sistema de puntajes, ranking de jugadores, premios por racha)
+100%: LLevar al juego a una version final con elementos avanzados de logica, jugabilidad y competencia(dificultades, mas tematicas, sistema de puntajes, ranking de jugadores, premios por racha)
