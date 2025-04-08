@@ -1,5 +1,14 @@
 import random
 
+def comparar_palabras(lista1,lista2):
+        for i in range(len(lista1)):
+                if lista1[i]==lista2[i]:
+                        print(lista1[i], "es correcto")
+                elif lista1[i] in lista2:
+                        print(lista1[i], "está en la palabra pero en la posición incorrecta")
+                else:
+                        print(lista1[i], "no está en la palabra")
+                
 
 
 
