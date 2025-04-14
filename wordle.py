@@ -8,11 +8,16 @@ def logica(palabra, intento):
         palabraSecreta=palabras[random.randint(0,len(palabras)-1)]
         palabra.extend(palabraSecreta)
         
+        print("Si no encuentra la palabra, escriba la palabra VENCIDO")
 
         bandera=True        
         while bandera: 
                 intento.clear()
                 intentos=str(input("Ingresa tu intento de 5 letras: "))
+
+                if (intentos == "VENCIDO") or (intentos == "Vencido") or (intentos == "vencido"):
+                        print("Te rendiste. La palabra era:", "".join(palabra))
+                        break
                 
                 if len(intentos)!=5:
                         print("El intento debe contener exactamente 5 letras.")
@@ -36,7 +41,17 @@ def logica(palabra, intento):
                 
 
 
-palabra, intento=logica(palabra, intento)
+
+def jugar():
+    while True:
+        logica(palabra, intento)
+        respuesta = input("Querés jugar de nuevo? SI/NO: ")
+        if (respuesta != "SI") or (respuesta != "Si") or (respuesta != "si") :
+            print("Gracias por jugar!")
+            break
+
+
+jugar()
         
         
         
