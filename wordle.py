@@ -20,36 +20,44 @@ def seleccionar_categoria(palabras):
         
     return palabras[seleccion]
 
+intentos_disponibles = lambda n: input("(" + str(n + 1) + "/6) Ingresa tu intento de 5 letras o vencido para dejar de jugar: ").lower()
+
+
 def logica(palabras, intento):
     palabraSecreta = palabras[random.randint(0, len(palabras) - 1)].lower()
     palabra.clear()
     palabra.extend(palabraSecreta)
-    bandera=True        
-    while bandera: 
-                intento.clear()
-                intentos=str(input("Ingresa tu intento de 5 letras o vencido para dejar de jugar: ")).lower()
-                
-                if intentos == "vencido":
-                        print("La palabra secreta era: ", palabraSecreta)
-                        bandera=False
-                if len(intentos)!=5:
-                        print("El intento debe contener exactamente 5 letras.")
-                else:
-                        intento.clear()
-                        intento.extend(intentos) 
-                
-                        if intento==palabra:
-                                print("Felicidades, has adivinado la palabra!")
-                                bandera=False
-                        else:
-                                for i in range(5):
-                                        if intento[i] == palabra[i]:
-                                                print(intento[i], "está en la palabra y en la posición correcta")
-                                        elif intento[i] in palabra:
-                                                print(intento[i], "está en la palabra pero en la posición incorrecta")
-                                        else:
-                                                print(intento[i], "no está en la palabra")
-    return palabra, intento 
+    bandera = True
+    intentos_realizados = 0
+    while bandera and intentos_realizados < 6:
+        intento.clear()
+        intentos = intentos_disponibles(intentos_realizados)
+
+        if intentos == "vencido":
+            print("La palabra secreta era:", palabraSecreta)
+            bandera = False
+        elif len(intentos) != 5:
+            print("El intento debe contener exactamente 5 letras.")
+        else:
+            intentos_realizados += 1
+            intento.extend(intentos)
+
+            if intento == palabra:
+                print("Felicidades, has adivinado la palabra!")
+                bandera = False
+            else:
+                for i in range(5):
+                    if intento[i] == palabra[i]:
+                        print(intento[i], "está en la palabra y en la posición correcta")
+                    elif intento[i] in palabra:
+                        print(intento[i], "está en la palabra pero en la posición incorrecta")
+                    else:
+                        print(intento[i], "no está en la palabra")
+
+    if intentos_realizados == 6 and intento != palabra:
+        print("Has alcanzado el máximo de intentos. La palabra secreta era:", palabraSecreta)
+
+    return palabra, intento
 
 
 def jugar():
