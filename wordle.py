@@ -8,6 +8,7 @@ paises=["Chile", "Japon", "Qatar", "Nepal", "India", "Siria"]
 palabras = [clubes, colores, paises]
 
 def seleccionar_categoria(palabras):
+    """Permite al jugador elegir una categoría o selecciona una aleatoria si la elección es inválida."""
     for i in range(len(palabras)):
         nombre_categoria = ["Clubes", "Colores", "Países"]
         print(f"{i + 1}. {nombre_categoria[i]}")    
@@ -24,6 +25,7 @@ intentos_disponibles = lambda n: input("(" + str(n + 1) + "/6) Ingresa tu intent
 
 
 def logica(palabras, intento):
+    """Ejecuta el núcleo del juego: elige una palabra secreta, gestiona los intentos del jugador y determina el resultado."""
     palabraSecreta = palabras[random.randint(0, len(palabras) - 1)].lower()
     palabra.clear()
     palabra.extend(palabraSecreta)
@@ -61,6 +63,7 @@ def logica(palabras, intento):
 
 
 def jugar():
+    """Inicia y administra el ciclo completo del juego, permitiendo múltiples partidas si el jugador lo desea."""
     while True:
         categoria = seleccionar_categoria(palabras)
         if categoria:
