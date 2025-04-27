@@ -2,10 +2,10 @@ import random
 
 palabra = []
 intento = []
-clubes=["Milan", "River", "Inter", "Colon", "Union", "Vélez", "Betis","Porto","Genoa","Celta"]
-colores=[ "verde", "negro","beige","grana"]
-paises=["Chile", "Japon", "Qatar", "Nepal", "India", "Siria"]	
-palabras = [clubes, colores, paises]
+clubes=("Milan", "River", "Inter", "Colon", "Union", "Vélez", "Betis","Porto","Genoa","Celta")
+colores=("verde", "negro","beige","grana")
+paises=("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")	
+palabras = (clubes, colores, paises)
 
 def generar_palabra_secreta(palabras):
     """Selecciona una palabra secreta aleatoria en minúscula."""
@@ -21,7 +21,7 @@ def seleccionar_categoria(palabras):
         print("Selección inválida. Se elegirá una categoría aleatoria.")
         seleccion = random.randint(0, len(palabras) - 1)
     else:
-        print(f"Has seleccionado la categoría: {palabras[seleccion]}")
+        print(f"Has seleccionado la categoría: {nombre_categoria[seleccion]}")
         
     return palabras[seleccion]
 
@@ -65,7 +65,7 @@ def logica(palabras, intento):
                 mostrar_estado_letras(intento, palabra)
 
     if intentos_realizados == 6:
-    print("Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
+        print("Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
     
     return palabra, intento
 
