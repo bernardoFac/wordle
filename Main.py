@@ -7,6 +7,10 @@ colores=[ "verde", "negro","beige","grana"]
 paises=["Chile", "Japon", "Qatar", "Nepal", "India", "Siria"]	
 palabras = [clubes, colores, paises]
 
+def generar_palabra_secreta(palabras):
+    """Selecciona una palabra secreta aleatoria en minúscula."""
+    return palabras[random.randint(0, len(palabras) - 1)].lower()
+
 def seleccionar_categoria(palabras):
     """Permite al jugador elegir una categoría o selecciona una aleatoria si la elección es inválida."""
     for i in range(len(palabras)):
@@ -21,12 +25,22 @@ def seleccionar_categoria(palabras):
         
     return palabras[seleccion]
 
+def mostrar_estado_letras(intento, palabra):
+    """Compara las letras del intento con la palabra y muestra su estado."""
+    for i in range(5):
+        if intento[i] == palabra[i]:
+            print(intento[i], "está en la palabra y en la posición correcta")
+        elif intento[i] in palabra:
+            print(intento[i], "está en la palabra pero en la posición incorrecta")
+        else:
+            print(intento[i], "no está en la palabra")
+
 intentos_disponibles = lambda n: input("(" + str(n + 1) + "/6) Ingresa tu intento de 5 letras o vencido para dejar de jugar: ").lower()
 
 
 def logica(palabras, intento):
     """Ejecuta el núcleo del juego: elige una palabra secreta, gestiona los intentos del jugador y determina el resultado."""
-    palabraSecreta = palabras[random.randint(0, len(palabras) - 1)].lower()
+    palabraSecreta = generar_palabra_secreta(palabras)
     palabra.clear()
     palabra.extend(palabraSecreta)
     bandera = True
@@ -48,17 +62,11 @@ def logica(palabras, intento):
                 print("Felicidades, has adivinado la palabra!")
                 bandera = False
             else:
-                for i in range(5):
-                    if intento[i] == palabra[i]:
-                        print(intento[i], "está en la palabra y en la posición correcta")
-                    elif intento[i] in palabra:
-                        print(intento[i], "está en la palabra pero en la posición incorrecta")
-                    else:
-                        print(intento[i], "no está en la palabra")
+                mostrar_estado_letras(intento, palabra)
 
-    if intentos_realizados == 6 and intento != palabra:
-        print("Has alcanzado el máximo de intentos. La palabra secreta era:", palabraSecreta)
-
+    if intentos_realizados == 6:
+    print("Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
+    
     return palabra, intento
 
 
