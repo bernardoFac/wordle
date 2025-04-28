@@ -9,7 +9,8 @@ palabras = (clubes, colores, paises)
 
 def generar_palabra_secreta(palabras):
     """Selecciona una palabra secreta aleatoria en minúscula."""
-    return palabras[random.randint(0, len(palabras) - 1)].lower()
+    palabras_5_letras = [p for p in categoria if len(p) == 5]
+    return random.choice(palabras_5_letras).lower()
 
 def seleccionar_categoria(palabras):
     """Permite al jugador elegir una categoría o selecciona una aleatoria si la elección es inválida."""
