@@ -5,7 +5,7 @@ intento = []
 clubes=("Milan", "River", "Inter", "Colon", "Union", "Vélez", "Betis","Porto","Genoa","Celta")
 colores=("verde", "negro","beige","grana")
 paises=("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")	
-palabras = (clubes, colores, paises)
+palabras = [clubes, colores, paises]
 
 def generar_palabra_secreta(palabras):
     """Selecciona una palabra secreta aleatoria en minúscula."""
