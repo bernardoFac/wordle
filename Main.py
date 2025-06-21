@@ -8,7 +8,13 @@ paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")
 palabras = [clubes, colores, paises]
 
 nombre = input("Ingresa tu nombre: ")
-dni = int(input("Ingresa tu dni: "))
+while True:
+    try:
+        dni = int(input("Ingresa tu dni: "))
+        break
+    except ValueError:
+        print("El DNI debe ser un número.")
+
 
 def generar_palabra_secreta(palabras):
     palabras_5_letras = [p for p in palabras if len(p) == 5]
@@ -54,6 +60,7 @@ def logica(palabras, intento, aciertos):
     palabra.extend(palabraSecreta)
     bandera = True
     intentos_realizados = 0
+    gano = False
 
     while bandera and intentos_realizados < 6:
         intento.clear()
@@ -71,14 +78,15 @@ def logica(palabras, intento, aciertos):
             if intento == palabra:
                 aciertos += 1
                 print("Felicidades, has adivinado la palabra!")
+                gano = True
                 bandera = False
             else:
                 mostrar_estado_letras(intento, palabra)
 
-    if intentos_realizados == 6:
+    if not gano and intentos_realizados == 6:
         print("Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
 
-    return palabra, intento, aciertos
+    return palabra, intento, aciertos, gano, intentos_realizados
 
 def leerHistorial():
     ruta_actual = os.path.dirname(__file__)
@@ -128,15 +136,36 @@ def actualizarHistorial(dni,nombre,aciertos):
             
 def jugar():
     aciertos = 0
+    partidas = 0
+    total_intentos_exitosos = 0
+    victorias = 0
+
     while True:
         categoria = seleccionar_categoria(palabras)
         if categoria:
-            intento = []  # Inicialización necesaria
-            palabra, intento, aciertos = logica(categoria, intento, aciertos)
+            intento = []
+            palabra, intento, aciertos, gano, intentos_realizados = logica(categoria, intento, aciertos)
+            partidas += 1
+            if gano:
+                victorias += 1
+                total_intentos_exitosos += intentos_realizados
+
         respuesta = input("¿Querés jugar de nuevo? SI/NO: ")
         if respuesta.lower() != "si":
-            actualizarHistorial(dni,nombre,aciertos)
+            actualizarHistorial(dni, nombre, aciertos)
             print("¡Gracias por jugar!")
+
+            if partidas > 0:
+                porcentaje = (victorias / partidas) * 100
+                promedio = total_intentos_exitosos / victorias if victorias > 0 else 0
+                print("Estadísticas:")
+                print(f"Partidas jugadas: {partidas}")
+                print(f"Victorias: {victorias}")
+                print(f"Porcentaje de victorias: {porcentaje:.2f}%")
+                print(f"Promedio de intentos por victoria: {promedio:.2f}")
+            else:
+                print("No se jugaron partidas.")
+
             leerHistorial()
             break
 
