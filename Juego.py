@@ -7,15 +7,6 @@ colores = ("verde", "negro", "beige", "grana")
 paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")	
 palabras = [clubes, colores, paises]
 
-nombre = input("Ingresa tu nombre: ")
-while True:
-    try:
-        dni = int(input("Ingresa tu dni: "))
-        break
-    except ValueError:
-        print("El DNI debe ser un número.")
-
-
 def generar_palabra_secreta(palabras):
     palabras_5_letras = [p for p in palabras if len(p) == 5]
     return random.choice(palabras_5_letras).lower()
@@ -135,6 +126,13 @@ def actualizarHistorial(dni,nombre,aciertos):
                                             
             
 def jugar():
+    nombre = input("Ingresa tu nombre: ")
+    while True:
+        try:
+            dni = int(input("Ingresa tu dni: "))
+            break
+        except ValueError:
+            print("El DNI debe ser un número.")
     aciertos = 0
     partidas = 0
     total_intentos_exitosos = 0
@@ -169,4 +167,5 @@ def jugar():
             leerHistorial()
             break
 
-jugar()
+if __name__ == "__main__":
+    jugar()
