@@ -32,13 +32,19 @@ def seleccionar_categoria(palabras):
     return palabras[seleccion]
 
 def mostrar_estado_letras(intento, palabra):
-    for i in range(5):
-        if intento[i] == palabra[i]:
-            print(intento[i], "está en la palabra y en la posición correcta")
-        elif intento[i] in palabra:
-            print(intento[i], "está en la palabra pero en la posición incorrecta")
+    estado = {}
+
+    for i in range(len(intento)):
+        letra = intento[i]
+        if letra == palabra[i]:
+            estado[i] = f"{letra} está en la palabra y en la posición correcta"
+        elif letra in palabra:
+            estado[i] = f"{letra} está en la palabra pero en la posición incorrecta"
         else:
-            print(intento[i], "no está en la palabra")
+            estado[i] = f"{letra} no está en la palabra"
+
+    for i in estado:
+        print(estado[i])
 
 intentos_disponibles = lambda n: input(f"({n + 1}/6) Ingresa tu intento de 5 letras o 'vencido' para dejar de jugar: ").lower()
 
@@ -118,11 +124,7 @@ def actualizarHistorial(dni,nombre,aciertos):
     except Exception as e:
         print(f"Ocurrio un error {e}")
             
-            
-                    
-                
-                
-            
+                                            
             
 def jugar():
     aciertos = 0
