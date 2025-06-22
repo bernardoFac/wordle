@@ -4,15 +4,21 @@ import os
 palabra = []
 clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Porto", "Genoa", "Celta")
 colores = ("verde", "negro", "beige", "grana")
-paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")	
-palabras = [clubes, colores, paises]
+paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")
+
+#Nuevas Categorias
+peliculas = ("Bambi", "Rocky", "Joker", "Mulan")
+animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala")
+comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos")
+
+palabras = [clubes, colores, paises, peliculas, animales, comidas]
 
 def generar_palabra_secreta(palabras):
     palabras_5_letras = [p for p in palabras if len(p) == 5]
     return random.choice(palabras_5_letras).lower()
 
 def seleccionar_categoria(palabras):
-    nombre_categoria = ["Clubes", "Colores", "Países"]
+    nombre_categoria = ["Clubes", "Colores", "Países", "Peliculas", "Animales", "Comidas"]
     for i in range(len(palabras)):
         print(f"{i + 1}. {nombre_categoria[i]}")
     try:
@@ -20,7 +26,7 @@ def seleccionar_categoria(palabras):
     except ValueError:
         seleccion = -1
 
-    if seleccion < 0 or seleccion > 2:
+    if seleccion < 0 or seleccion >= len(palabras):
         print("Selección inválida. Se elegirá una categoría aleatoria.")
         seleccion = random.randint(0, len(palabras) - 1)
     else:
