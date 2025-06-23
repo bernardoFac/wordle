@@ -19,8 +19,9 @@ def generar_palabra_secreta(palabras):
 
 def seleccionar_categoria(palabras):
     nombre_categoria = ["Clubes", "Colores", "Países", "Peliculas", "Animales", "Comidas"]
+    emojis = ["⚽", "🎨", "🌎", "🎬", "🐾", "🍔"]
     for i in range(len(palabras)):
-        print(f"{i + 1}. {nombre_categoria[i]}")
+        print(f"{i + 1}. {emojis[i]} {nombre_categoria[i]}")
     try:
         seleccion = int(input("Ingresa el número de la categoría que deseas jugar: ")) - 1
     except ValueError:
@@ -40,11 +41,11 @@ def mostrar_estado_letras(intento, palabra):
     for i in range(len(intento)):
         letra = intento[i]
         if letra == palabra[i]:
-            estado[i] = f"{letra} está en la palabra y en la posición correcta"
+            estado[i] = f"✅ {letra.upper()} está en la palabra y en la posición correcta"
         elif letra in palabra:
-            estado[i] = f"{letra} está en la palabra pero en la posición incorrecta"
+            estado[i] = f"🟡 {letra.upper()} está en la palabra pero en la posición incorrecta"
         else:
-            estado[i] = f"{letra} no está en la palabra"
+            estado[i] = f"❌ {letra.upper()} no está en la palabra"
 
     for i in estado:
         print(estado[i])
@@ -74,14 +75,14 @@ def logica(palabras, intento, aciertos):
 
             if intento == palabra:
                 aciertos += 1
-                print("Felicidades, has adivinado la palabra!")
+                print("🎉 ¡Felicidades! Adivinaste la palabra secreta 🎉")
                 gano = True
                 bandera = False
             else:
                 mostrar_estado_letras(intento, palabra)
 
     if not gano and intentos_realizados == 6:
-        print("Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
+        print("💀Alcanzaste el máximo de intentos. La palabra secreta era:", palabraSecreta)
 
     return palabra, intento, aciertos, gano, intentos_realizados
 
@@ -132,6 +133,10 @@ def actualizarHistorial(dni,nombre,aciertos):
                                             
             
 def jugar():
+    print("╔══════════════════════════════════════╗")
+    print("║         🎉  BIENVENIDO A...          ║")
+    print("║             🌟 WORDLE 🌟             ║")
+    print("╚══════════════════════════════════════╝\n")
     nombre = input("Ingresa tu nombre: ")
     while True:
         try:
@@ -157,7 +162,7 @@ def jugar():
         respuesta = input("¿Querés jugar de nuevo? SI/NO: ")
         if respuesta.lower() != "si":
             actualizarHistorial(dni, nombre, aciertos)
-            print("¡Gracias por jugar!")
+            print("\n🎮 Gracias por jugar a Wordle. ¡Hasta la próxima! 🎮")
 
             if partidas > 0:
                 porcentaje = (victorias / partidas) * 100
