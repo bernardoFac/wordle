@@ -2,20 +2,28 @@ import random
 import os
 
 palabra = []
-clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Porto", "Genoa", "Celta")
-colores = ("verde", "negro", "beige", "grana")
-paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria")
+clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Roma", "Porto", "Genoa", "Celta", "Chelsea")  # 4, 5, 7
+colores = ("verde", "negro", "beige", "grana", "rojo", "azul", "gris", "cyan", "amarillo")  # 4, 5, 7
+paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria", "Perú", "Brasil", "España")  # 4, 5, 7
 
-#Nuevas Categorias
-peliculas = ("Bambi", "Rocky", "Joker", "Mulan")
-animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala")
-comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos")
+peliculas = ("Bambi", "Rocky", "Joker", "Mulan", "Cars", "Coco", "ToyStory", "Coraline")  # 4, 5, 7
+animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala", "Mono", "Gato", "Conejos", "Gallina")  # 4, 5, 7
+comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos", "Pollo", "Pan", "Fideos", "Empanada")  # 3, 5, 7
 
-palabras = [clubes, colores, paises, peliculas, animales, comidas]
+# Armamos el diccionario
+categorias = {
+    "clubes": clubes,
+    "colores": colores,
+    "paises": paises,
+    "peliculas": peliculas,
+    "animales": animales,
+    "comidas": comidas
+}
 
-def generar_palabra_secreta(palabras):
-    palabras_5_letras = [p for p in palabras if len(p) == 5]
-    return random.choice(palabras_5_letras).lower()
+
+def generar_palabra_secreta(lista_palabras):
+    return random.choice(lista_palabras).lower()
+
 
 def seleccionar_categoria(palabras):
     nombre_categoria = ["Clubes", "Colores", "Países", "Peliculas", "Animales", "Comidas"]
@@ -35,6 +43,24 @@ def seleccionar_categoria(palabras):
         
     return palabras[seleccion]
 
+def filtrar_palabras_por_dificultad(categorias, dificultad):
+    if dificultad == "1":
+        longitud = 4
+    elif dificultad == "2":
+        longitud = 5
+    else:
+        longitud = 7
+
+    palabras_filtradas = []
+
+    for lista in categorias.values():
+        for palabra in lista:
+            if len(palabra) == longitud:
+                palabras_filtradas.append(palabra.lower())
+
+    return palabras_filtradas
+
+
 def mostrar_estado_letras(intento, palabra):
     estado = {}
 
@@ -50,7 +76,19 @@ def mostrar_estado_letras(intento, palabra):
     for i in estado:
         print(estado[i])
 
-intentos_disponibles = lambda n: input(f"({n + 1}/6) Ingresa tu intento de 5 letras o 'vencido' para dejar de jugar: ").lower()
+def pedir_dificultad():
+    print("Seleccioná una dificultad:")
+    print("1 - Fácil (4 letras)")
+    print("2 - Media (5 letras)")
+    print("3 - Difícil (7 letras)")
+    dificultad = input("Elegí una opción (1/2/3): ")
+    while dificultad not in ("1", "2", "3"):
+        dificultad = input("Opción inválida. Elegí 1, 2 o 3: ")
+    return dificultad
+
+
+def intentos_disponibles(n, longitud):
+    return input(f"({n + 1}/6) Ingresa tu intento de {longitud} letras o 'vencido' para dejar de jugar: ").lower()
 
 def logica(palabras, intento, aciertos):
     palabraSecreta = generar_palabra_secreta(palabras)
@@ -62,8 +100,7 @@ def logica(palabras, intento, aciertos):
 
     while bandera and intentos_realizados < 6:
         intento.clear()
-        intentos = intentos_disponibles(intentos_realizados)
-
+        intentos = intentos_disponibles(intentos_realizados, len(palabraSecreta))
         if intentos == "vencido":
             print("La palabra secreta era:", palabraSecreta)
             bandera = False
@@ -86,7 +123,7 @@ def logica(palabras, intento, aciertos):
 
     return palabra, intento, aciertos, gano, intentos_realizados
 
-def leerHistorial():
+def leerHistorial(): 
     ruta_actual = os.path.dirname(__file__)
     ruta_archivo = os.path.join(ruta_actual, "historial.csv")
     try:
@@ -133,6 +170,14 @@ def actualizarHistorial(dni,nombre,aciertos):
                                             
             
 def jugar():
+    dificultad = pedir_dificultad()
+
+    longitud = 4 if dificultad == "1" else 5 if dificultad == "2" else 7
+    palabras_filtradas = []
+    for categoria in categorias.values():
+        palabras_filtradas.append(tuple(p for p in categoria if len(p) == longitud))
+
+
     print("╔══════════════════════════════════════╗")
     print("║         🎉  BIENVENIDO A...          ║")
     print("║             🌟 WORDLE 🌟             ║")
@@ -150,7 +195,8 @@ def jugar():
     victorias = 0
 
     while True:
-        categoria = seleccionar_categoria(palabras)
+        categoria = seleccionar_categoria(palabras_filtradas)
+
         if categoria:
             intento = []
             palabra, intento, aciertos, gano, intentos_realizados = logica(categoria, intento, aciertos)
