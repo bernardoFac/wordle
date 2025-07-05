@@ -231,6 +231,7 @@ def jugar():
     for categoria in palabras_ordenadas:
         palabras_filtradas.append(tuple(p for p in categoria if len(p) == longitud))
 
+
     print("╔══════════════════════════════════════╗")
     print("║         🎉  BIENVENIDO A...          ║")
     print("║             🌟 WORDLE 🌟             ║")
@@ -242,7 +243,7 @@ def jugar():
             break
         else:
             print("El nombre solo debe contener letras. Intentá de nuevo.")
-
+            
     while True:
         try:
             dni = int(input("Ingresa tu dni: "))
@@ -279,6 +280,7 @@ def jugar():
         respuesta = input("¿Querés jugar de nuevo? SI/NO: ")
         if respuesta.lower() != "si":
             actualizarHistorial(dni, nombre, aciertos)
+            print("📂 Resultados guardados")
             print("\n🎮 Gracias por jugar a Wordle. ¡Hasta la próxima! 🎮")
 
             intentos_estadisticas = 0
