@@ -195,10 +195,6 @@ def jugar():
     for categoria in palabras_ordenadas:
         palabras_filtradas.append(tuple(p for p in categoria if len(p) == longitud))
 
-    print("╔══════════════════════════════════════╗")
-    print("║         🎉  BIENVENIDO A...          ║")
-    print("║             🌟 WORDLE 🌟             ║")
-    print("╚══════════════════════════════════════╝\n")
     nombre = input("Ingresa tu nombre: ")
     while True:
         try:
@@ -226,6 +222,7 @@ def jugar():
         respuesta = input("¿Querés jugar de nuevo? SI/NO: ")
         if respuesta.lower() != "si":
             actualizarHistorial(dni, nombre, aciertos)
+            print("📂 Resultados guardados")
             print("\n🎮 Gracias por jugar a Wordle. ¡Hasta la próxima! 🎮")
 
             if partidas > 0:
@@ -241,9 +238,71 @@ def jugar():
 
             leerHistorial()
             break
+            
+def jugar_duelo():
+    """Modo Duelo donde se pueden enfrentar 2 usuarios localmente y ver quien es el mejor"""
+    print("🔥Modo de Duelo🔥")
+    nombre1 = input("Jugador 1 - Ingresá tu nombre: ")
+    dni1 = input("Jugador 1 - Ingresá tu DNI: ")
+    nombre2 = input("Jugador 2 - Ingresá tu nombre: ")
+    dni2 = input("Jugador 2 - Ingresá tu DNI: ")
+
+    dificultad = pedir_dificultad()
+    longitud = 4 if dificultad == "1" else 5 if dificultad == "2" else 7
+
+    palabras_filtradas = []
+    for categoria in palabras_ordenadas:
+        palabras_filtradas.append(tuple(p for p in categoria if len(p) == longitud))
+
+    print(f"\n Turno de {nombre1}")
+    categoria1 = seleccionar_categoria(palabras_filtradas)
+    palabra_secreta1 = generar_palabra_secreta(categoria1)
+    intento1 = []
+    aciertos1 = 0
+    _, _, aciertos1, gano1, intentos1 = logica([palabra_secreta1], intento1, aciertos1)
+
+    print(f"\n Turno de {nombre2}")
+    categoria2 = seleccionar_categoria(palabras_filtradas)
+    palabra_secreta2 = generar_palabra_secreta(categoria2)
+    intento2 = []
+    aciertos2 = 0
+    _, _, aciertos2, gano2, intentos2 = logica([palabra_secreta2], intento2, aciertos2)
+
+    print("\n Resultado Del Duelo:")
+    if gano1 and not gano2:
+        print(f"🏆 ¡Gana {nombre1}!")
+    elif gano2 and not gano1:
+        print(f"🏆 ¡Gana {nombre2}!")
+    elif gano1 and gano2:
+        if intentos1 < intentos2:
+            print(f"🏆 Ambos adivinaron, pero {nombre1} lo hizo en menos intentos.")
+        elif intentos2 < intentos1:
+            print(f"🏆 Ambos adivinaron, pero {nombre2} lo hizo en menos intentos.")
+        else:
+            print("🤝 ¡Empate! Ambos adivinaron en la misma cantidad de intentos.")
+    else:
+        print("💀 Ninguno adivinó, son malisimos")
+
+    if gano1:
+        actualizarHistorial(dni1, nombre1, aciertos1)
+    if gano2:
+        actualizarHistorial(dni2, nombre2, aciertos2)
+        
+    print(f"\nPalabra de {nombre1} era: {palabra_secreta1}")
+    print(f"Palabra de {nombre2} era: {palabra_secreta2}")
+    print("📂 Resultados guardados")
+    print("\n🎮 Gracias por jugar a Wordle. ¡Hasta la próxima! 🎮")
     
 
 # main que ejecuta la funcion principal        
 if __name__ == "__main__":
-    jugar()
+    print("╔══════════════════════════════════════╗")
+    print("║         🎉  BIENVENIDO A...          ║")
+    print("║             🌟 WORDLE 🌟             ║")
+    print("╚══════════════════════════════════════╝\n")
+    modo = input("🎮 ¿Querés jugar solo o en duelo? (solo/duelo): ").lower()
+    if modo == "duelo":
+        jugar_duelo()
+    else:
+        jugar()
 
