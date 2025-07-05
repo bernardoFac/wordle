@@ -1,0 +1,5 @@
+1. Alejo (DNI: 42951036) - Aciertos: 5
+2. Homero (DNI: 48954624) - Aciertos: 4
+3. Anavela (DNI: 48562149) - Aciertos: 4
+4. Juan Carlos (DNI: 458564294) - Aciertos: 3
+5. Test (DNI: 99999999) - Aciertos: 3
