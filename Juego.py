@@ -4,13 +4,13 @@ import os
 
 palabra = []
 # Distintas listas que contienen a las palabras que conforman la categoria
-clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Roma", "Porto", "Genoa", "Celta", "Chelsea", "Boca")  
-colores = ("verde", "negro", "beige", "grana", "rojo", "azul", "gris", "cyan", "amarillo") 
-paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria", "Peru", "Brasil", "España")  
+clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Roma", "Porto", "Genoa", "Celta", "Chelsea", "Boca","Lanus", "Arsenal", "Lazio", "Napoli", "Ajax", "Santos", "Tigre")
+colores = ("verde", "negro", "beige", "grana", "rojo", "azul", "gris", "cyan", "amarillo","blanco", "morado", "violeta", "celeste", "rosado")
+paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria", "Peru", "Brasil", "España","Italia", "Francia", "Grecia", "Mexico", "Canada", "Egipto")
+peliculas = ("Bambi", "Rocky", "Joker", "Mulan", "Cars", "Coco", "ToyStory", "Coraline","Avatar", "Titanic", "Batman", "Frozen", "Shrek")
+animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala", "Mono", "Gato", "Conejos", "Gallina","Perro", "Cabra", "Pato", "Zorro", "Caballo")
+comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos", "Pollo", "Pan", "Fideos", "Empanada","Hamburguesa", "Milanesa", "Ñoquis", "Ensalada", "Lentejas")
 
-peliculas = ("Bambi", "Rocky", "Joker", "Mulan", "Cars", "Coco", "ToyStory", "Coraline") 
-animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala", "Mono", "Gato", "Conejos", "Gallina")  
-comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos", "Pollo", "Pan", "Fideos", "Empanada")  
 
 # Armamos el diccionario
 categorias = {
