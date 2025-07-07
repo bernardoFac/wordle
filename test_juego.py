@@ -41,6 +41,17 @@ class TestJuegoFunciones(unittest.TestCase):
         resultado = filtrar_palabras_por_dificultad(categorias, "1")
         self.assertTrue(all(len(p) == 4 for p in resultado))
 
+    def test_filtrar_palabras_por_dificultad_dificil(self):
+        """
+        Verifica que la función filtre solo palabras de 7 letras 
+        cuando la dificultad seleccionada es '3' (difícil).
+        """
+        categorias = {
+            "peliculas": ("Coraline", "ToyStory", "Avatar"),
+            "comidas": ("Empanada", "Pizza", "Fideos"),
+        }
+        resultado = filtrar_palabras_por_dificultad(categorias, "3")
+        self.assertTrue(all(len(p) == 7 for p in resultado))
 
     def test_mostrar_estado_letras_no_falla(self):
         """

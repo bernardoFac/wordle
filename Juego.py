@@ -4,12 +4,35 @@ import os
 
 palabra = []
 # Distintas listas que contienen a las palabras que conforman la categoria
-clubes = ("Milan", "River", "Inter", "Colon", "Union", "Velez", "Betis", "Roma", "Porto", "Genoa", "Celta", "Chelsea", "Boca","Lanus", "Arsenal", "Lazio", "Napoli", "Ajax", "Santos", "Tigre")
-colores = ("verde", "negro", "beige", "grana", "rojo", "azul", "gris", "cyan", "amarillo","blanco", "morado", "violeta", "celeste", "rosado")
-paises = ("Chile", "Japon", "Qatar", "Nepal", "India", "Siria", "Peru", "Brasil", "España","Italia", "Francia", "Grecia", "Mexico", "Canada", "Egipto")
-peliculas = ("Bambi", "Rocky", "Joker", "Mulan", "Cars", "Coco", "ToyStory", "Coraline","Avatar", "Titanic", "Batman", "Frozen", "Shrek")
-animales = ("Panda", "Cebra", "Tigre", "Burro", "Koala", "Mono", "Gato", "Conejos", "Gallina","Perro", "Cabra", "Pato", "Zorro", "Caballo")
-comidas = ("Pizza", "Torta", "Asado", "Sushi", "Tacos", "Pollo", "Pan", "Fideos", "Empanada","Hamburguesa", "Milanesa", "Ñoquis", "Ensalada", "Lentejas")
+clubes = (
+    "Roma", "Ajax", "Boca", "Milan", "River", "Inter", "Betis", "Union", "Colon", "Velez", 
+    "Tigre", "Genoa", "Celta", "Lanus", "Porto", "Napoli", "Chelsea", "Arsenal", "Monaco"
+)
+
+colores = (
+    "rojo", "azul", "gris", "cyan", "verde", "negro", "beige", "grana", 
+    "blanco", "morado", "rosado", "celeste", "violeta", "amarillo"
+)
+
+paises = (
+    "Peru", "Nepal", "Chile", "Qatar", "India", "Siria", "Japon", "Italia", "Brasil", "España", 
+    "Grecia", "Francia", "Mexico", "Canada", "Egipto", "Nigeria", "Ucrania", "Australia"
+)
+
+peliculas = (
+    "Cars", "Coco", "Shrek", "Bambi", "Rocky", "Joker", "Mulan", "Frozen", 
+    "Avatar", "Batman", "Titanic", "ToyStory", "Coraline", "Up", "Amelie", "Oldboy"
+)
+animales = (
+    "Mono", "Gato", "Pato", "Perro", "Tigre", "Panda", "Burro", "Cebra", "Zorro", 
+    "Cabra", "Koala", "Gallina", "Caballo", "Conejos", "Leopardo", "Flamingo"
+)
+
+comidas = (
+    "Pan", "Asado", "Pizza", "Torta", "Sushi", "Tacos", "Pollo", "Ñoquis", "Fideos", 
+    "Empanada", "Ensalada", "Milanesa", "Lentejas", "Guisado", "Hamburguesa"
+)
+
 
 
 # Armamos el diccionario
