@@ -173,9 +173,9 @@ def leerHistorial():
                 campos=linea.split(";")
                 dni,nombre,aciertos=campos
                 print(f"Nombre:{nombre}     DNI:{dni}      Aciertos:{aciertos}")
-    except Exception as e:
-        print(f"Ocurrio un error {e}")
-  
+    except FileNotFoundError:
+        print("Todavía no hay historial disponible.")
+
 # actualiza el historial agregando la ultima sesion  
 def actualizarHistorial(dni,nombre,aciertos):
     ruta_actual = os.path.dirname(__file__)
