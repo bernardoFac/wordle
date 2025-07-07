@@ -254,11 +254,6 @@ def jugar():
     for categoria in palabras_ordenadas:
         palabras_filtradas.append(tuple(p for p in categoria if len(p) == longitud))
 
-
-    print("╔══════════════════════════════════════╗")
-    print("║         🎉  BIENVENIDO A...          ║")
-    print("║             🌟 WORDLE 🌟             ║")
-    print("╚══════════════════════════════════════╝\n")
     
     while True:
         nombre = input("Ingresa tu nombre: ")
