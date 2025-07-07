@@ -198,8 +198,8 @@ def actualizarHistorial(dni,nombre,aciertos):
                         nuevas_lineas.append(linea+"\n")
                     continue
                 nuevas_lineas.append(linea+"\n")
-    except Exception as e:
-        print(f"Ocurrio un error {e}")
+    except FileNotFoundError:
+        print("Todavía no hay historial.")
     if not jugadorEncontrado:
         nuevas_lineas.append(f"{dni};{nombre};{aciertos}\n")
     try:
