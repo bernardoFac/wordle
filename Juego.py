@@ -369,14 +369,13 @@ def jugar_duelo():
     palabra_secreta1 = generar_palabra_secreta(categoria1)
     intento1 = []
     aciertos1 = 0
-    _, _, aciertos1, gano1, intentos1 = logica([palabra_secreta1], intento1, aciertos1)
-
+    aciertos1, gano1, intentos1 = logica([palabra_secreta1], intento1, aciertos1)
     print(f"\n Turno de {nombre2}")
     categoria2 = seleccionar_categoria(palabras_filtradas)
     palabra_secreta2 = generar_palabra_secreta(categoria2)
     intento2 = []
     aciertos2 = 0
-    _, _, aciertos2, gano2, intentos2 = logica([palabra_secreta2], intento2, aciertos2)
+    aciertos2, gano2, intentos2 = logica([palabra_secreta2], intento2, aciertos2)
 
     print("\n Resultado Del Duelo:")
     if gano1 and not gano2:
@@ -410,7 +409,14 @@ if __name__ == "__main__":
     print("║         🎉  BIENVENIDO A...          ║")
     print("║             🌟 WORDLE 🌟             ║")
     print("╚══════════════════════════════════════╝\n")
-    modo = input("🎮 ¿Querés jugar solo o en duelo? (solo/duelo): ").lower()
+
+    while True:
+        modo = input("🎮 ¿Querés jugar solo o en duelo? (solo/duelo): ").strip().lower()
+        if modo in ("solo", "duelo"):
+            break
+        else:
+            print("Opción inválida. Escribí 'solo' o 'duelo'.")
+
     if modo == "duelo":
         jugar_duelo()
     else:
